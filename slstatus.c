@@ -10,6 +10,7 @@
 #include "arg.h"
 #include "slstatus.h"
 #include "util.h"
+#include <locale.h>
 
 struct arg {
 	const char *(*func)();
@@ -47,6 +48,9 @@ usage(void)
 int
 main(int argc, char *argv[])
 {
+	/* Set the locale to the environment default */
+	setlocale (LC_ALL, "");
+
 	struct sigaction act;
 	struct timespec start, current, diff, intspec, wait;
 	size_t i, len;
